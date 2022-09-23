@@ -12,7 +12,13 @@ app.use(express_1.default.json());
 app.use((0, cors_1.default)({
     origin: "http://localhost:3000",
 }));
-app.use("/", campGround_1.default);
+app.use("/campgrounds", campGround_1.default);
+app.all("*", (req, res) => {
+    res.status(404).json({
+        status: "fail",
+        message: `No route found on request ${req.originalUrl}`,
+    });
+});
 const port = 5000;
 mongoose_1.default
     .connect("mongodb://localhost:27017/yelp-camp")

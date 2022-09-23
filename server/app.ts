@@ -1,4 +1,5 @@
 import express from "express";
+import { Request, Response } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import campGroundRoute from "./routes/campGround";
@@ -11,7 +12,14 @@ app.use(
   })
 );
 
-app.use("/", campGroundRoute);
+app.use("/campgrounds", campGroundRoute);
+
+app.all("*", (req: Request, res: Response) => {
+  res.status(404).json({
+    status: "fail",
+    message: `No route found on request ${req.originalUrl}`,
+  });
+});
 
 const port = 5000;
 

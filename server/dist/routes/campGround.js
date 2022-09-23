@@ -7,4 +7,5 @@ const express_1 = __importDefault(require("express"));
 const campGroundControllers_1 = require("../controllers/campGroundControllers");
 const router = express_1.default.Router();
 router.route("/").get(campGroundControllers_1.getCampGrounds).post(campGroundControllers_1.createCampGround);
+router.route("/:id").get(campGroundControllers_1.getOneCampGround);
 exports.default = router;

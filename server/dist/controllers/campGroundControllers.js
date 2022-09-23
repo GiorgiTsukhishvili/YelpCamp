@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createCampGround = exports.getCampGrounds = void 0;
+exports.createCampGround = exports.getOneCampGround = exports.getCampGrounds = void 0;
 const campGround_1 = require("../models/campGround");
 const getCampGrounds = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -29,6 +29,32 @@ const getCampGrounds = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getCampGrounds = getCampGrounds;
+const getOneCampGround = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const oneCG = yield campGround_1.CampGround.findById(req.params.id);
+        if (oneCG === null) {
+            return res.status(400).json({
+                status: "fail",
+                message: "Campground does not exist",
+            });
+        }
+        else {
+            res.status(200).json({
+                status: "success",
+                data: {
+                    campGround: oneCG,
+                },
+            });
+        }
+    }
+    catch (err) {
+        res.status(400).json({
+            status: "fail",
+            message: err,
+        });
+    }
+});
+exports.getOneCampGround = getOneCampGround;
 const createCampGround = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const newCampGround = yield campGround_1.CampGround.create(req.body);
