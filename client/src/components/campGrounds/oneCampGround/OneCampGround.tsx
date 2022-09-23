@@ -17,20 +17,16 @@ const OneCampGround = () => {
     fetchData();
   }, [id]);
 
-  return (
-    camp && (
-      <div>
-        <h1>{camp.title}</h1>
-        <h1>{camp.location}</h1>
-        <img
-          src={camp.image}
-          alt=""
-          className="w-[300px] h-[300px] bg-contain"
-        />
-        <h1>{camp.description}</h1>
-        <h1>{camp.price}</h1>
-      </div>
-    )
+  return camp !== undefined ? (
+    <div>
+      <h1>{camp.title}</h1>
+      <h1>{camp.location}</h1>
+      <img src={camp.image} alt="" className="w-[300px] h-[300px] bg-contain" />
+      <h1>{camp.description}</h1>
+      <h1>{camp.price}</h1>
+    </div>
+  ) : (
+    <div></div>
   );
 };
 
