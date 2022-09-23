@@ -15,7 +15,7 @@ const Navbar = () => {
         Campgrounds
       </Link>
       <Link
-        to="/form"
+        to={`/form`}
         className="hover:text-gray-400 transition-all duration-300"
       >
         New Campgrounds

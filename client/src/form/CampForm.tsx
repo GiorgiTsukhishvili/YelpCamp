@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { CampFormInterface } from "./CampFormInterface";
 import * as api from "./../api/index";
+import { useParams } from "react-router-dom";
 
 const CampForm = () => {
+  const { formState } = useParams();
+
   const [campData, setCampData] = useState<CampFormInterface>({
     title: "",
     price: 0,
@@ -10,6 +13,9 @@ const CampForm = () => {
     location: "",
     image: "",
   });
+
+  if (formState === "update") {
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
