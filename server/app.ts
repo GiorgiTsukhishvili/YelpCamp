@@ -17,7 +17,7 @@ app.use("/campgrounds", campGroundRoute);
 app.all("*", (req: Request, res: Response) => {
   res.status(404).json({
     status: "fail",
-    message: `No route found on request ${req.originalUrl}`,
+    message: `No route found on request ${req.path}`,
   });
 });
 

@@ -16,7 +16,7 @@ app.use("/campgrounds", campGround_1.default);
 app.all("*", (req, res) => {
     res.status(404).json({
         status: "fail",
-        message: `No route found on request ${req.originalUrl}`,
+        message: `No route found on request ${req.path}`,
     });
 });
 const port = 5000;
