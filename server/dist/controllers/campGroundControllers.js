@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createCampGround = exports.getOneCampGround = exports.getCampGrounds = void 0;
+exports.deleteCampGround = exports.updateCampGround = exports.createCampGround = exports.getOneCampGround = exports.getCampGrounds = void 0;
 const campGround_1 = require("../models/campGround");
 const getCampGrounds = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -73,3 +73,37 @@ const createCampGround = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.createCampGround = createCampGround;
+const updateCampGround = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const updatedCamp = yield campGround_1.CampGround.findByIdAndUpdate(req.params.id, req.body);
+        res.status(200).json({
+            message: "success",
+            data: {
+                updatedCamp,
+            },
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            status: "fail",
+            message: err,
+        });
+    }
+});
+exports.updateCampGround = updateCampGround;
+const deleteCampGround = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield campGround_1.CampGround.findByIdAndDelete(req.params.id);
+        res.status(200).json({
+            status: "success",
+            data: null,
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            status: "fail",
+            message: err,
+        });
+    }
+});
+exports.deleteCampGround = deleteCampGround;

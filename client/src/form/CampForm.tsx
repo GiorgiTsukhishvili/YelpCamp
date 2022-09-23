@@ -47,7 +47,7 @@ const CampForm = () => {
         value={campData.location}
         onChange={(e) => updateCampData("location", e.target.value)}
       />
-      <button type="submit">Submit</button>
+      <button type="submit">Add campground</button>
     </form>
   );
 };
