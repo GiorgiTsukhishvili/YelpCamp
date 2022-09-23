@@ -4,8 +4,11 @@ import * as api from "./../api/index";
 
 const CampForm = () => {
   const [campData, setCampData] = useState<CampFormInterface>({
-    location: "",
     title: "",
+    price: 0,
+    description: "",
+    location: "",
+    image: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -13,8 +16,11 @@ const CampForm = () => {
     await api.createCamp(campData);
 
     setCampData({
-      location: "",
       title: "",
+      price: 0,
+      description: "",
+      location: "",
+      image: "",
     });
   };
 

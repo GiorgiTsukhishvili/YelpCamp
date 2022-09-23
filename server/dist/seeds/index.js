@@ -22,9 +22,13 @@ const seedDb = () => __awaiter(void 0, void 0, void 0, function* () {
     yield campGround_1.CampGround.deleteMany({});
     for (let i = 0; i < 50; i++) {
         const random1000 = Math.floor(Math.random() * 1000);
+        const price = Math.floor(Math.random() * 20) + 10;
         yield campGround_1.CampGround.create({
             location: `${cities_1.default[random1000].city}, ${cities_1.default[random1000].state}`,
             title: `${sample(seedHelpers_1.descriptors)} ${sample(seedHelpers_1.places)}`,
+            image: "https://source.unsplash.com/collection/483251",
+            description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique fuga fugiat cumque autem mollitia neque voluptatibus quia labore eligendi tempore quis provident id quo, aperiam impedit pariatur. Odio, ratione id.",
+            price,
         });
     }
 });

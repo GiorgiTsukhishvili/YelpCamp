@@ -7,7 +7,8 @@ exports.CampGround = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const campGroundSchema = new mongoose_1.default.Schema({
     title: { type: String },
-    price: { type: String },
+    image: { type: String },
+    price: { type: Number },
     description: { type: String },
     location: { type: String },
 });

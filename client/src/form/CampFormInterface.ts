@@ -1,4 +1,7 @@
 export interface CampFormInterface {
-  location: string;
   title: string;
+  price: number;
+  description: string;
+  location: string;
+  image: string;
 }

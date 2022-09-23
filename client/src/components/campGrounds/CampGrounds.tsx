@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { CampGroundsInterface } from "./campGroundsInteface";
 import { v4 } from "uuid";
-import * as api from "./../api/index";
+import * as api from "./../../api/index";
+import { Link } from "react-router-dom";
 
 const CampGrounds = () => {
   const [campGrounds, setCampGrounds] = useState<CampGroundsInterface[]>();
@@ -20,10 +21,10 @@ const CampGrounds = () => {
     <div>
       {campGrounds &&
         campGrounds.map((item) => (
-          <div key={v4()}>
+          <Link to={`/campgrounds/${item._id}`} key={v4()}>
             <h1>{item.title}</h1>
             <h1>{item.location}</h1>
-          </div>
+          </Link>
         ))}
     </div>
   );
