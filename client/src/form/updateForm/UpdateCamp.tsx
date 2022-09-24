@@ -97,7 +97,7 @@ const UpdateCamp = () => {
         Price
       </label>
       <input
-        type="text"
+        type="number"
         id="price"
         placeholder="Campground Price"
         required

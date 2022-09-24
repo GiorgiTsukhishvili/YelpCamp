@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { CampFormInterface } from "./campFormInterface";
 import * as api from "./../api/index";
-import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const CampForm = () => {
-  const { formState } = useParams();
-
   const [campData, setCampData] = useState<CampFormInterface>({
     title: "",
     price: 0,
@@ -13,6 +11,7 @@ const CampForm = () => {
     location: "",
     image: "",
   });
+  const [addedForm, setAddedForm] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -25,6 +24,8 @@ const CampForm = () => {
       location: "",
       image: "",
     });
+
+    setAddedForm(true);
   };
 
   const updateCampData = (value: string, key: string) => {
@@ -33,7 +34,17 @@ const CampForm = () => {
     });
   };
 
-  return (
+  return addedForm ? (
+    <div className="flex mx-auto my-20 flex-col justify-center items-center">
+      <h1 className="text-2xl mb-10">Campground Added Successfully</h1>
+      <Link
+        to="/"
+        className="bg-blue-500 text-white px-5 py-2 text-md rounded-[8px] hover:bg-blue-600 transition-all duration-300"
+      >
+        Go to all campgrounds
+      </Link>
+    </div>
+  ) : (
     <form
       onSubmit={(e) => handleSubmit(e)}
       className="flex mx-auto my-10 flex-col"
@@ -82,7 +93,7 @@ const CampForm = () => {
         Price
       </label>
       <input
-        type="text"
+        type="number"
         id="price"
         placeholder="Campground Price"
         required
