@@ -1,30 +1,35 @@
-import React, { useState } from "react";
-import { CampFormInterface } from "./campFormInterface";
-import * as api from "./../api/index";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { UpdateCampInterface } from "./updateCampInterface";
+import * as api from "./../../api/index";
+import { useParams, Link } from "react-router-dom";
 
-const CampForm = () => {
-  const { formState } = useParams();
+const UpdateCamp = () => {
+  const { id } = useParams();
 
-  const [campData, setCampData] = useState<CampFormInterface>({
+  const [campData, setCampData] = useState<UpdateCampInterface>({
     title: "",
     price: 0,
     description: "",
     location: "",
     image: "",
+    _id: "",
+    __v: 0,
   });
+  const [updated, setUpdated] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await api.fetchSingleCamp(id!);
+      setCampData(data.data.data.campGround);
+    };
+    fetchData();
+  }, [id]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await api.createCamp(campData);
+    await api.patchSingleCamp(id!, campData);
 
-    setCampData({
-      title: "",
-      price: 0,
-      description: "",
-      location: "",
-      image: "",
-    });
+    setUpdated(true);
   };
 
   const updateCampData = (value: string, key: string) => {
@@ -33,7 +38,17 @@ const CampForm = () => {
     });
   };
 
-  return (
+  return updated ? (
+    <div className="flex mx-auto my-20 flex-col justify-center items-center">
+      <h1 className="text-2xl mb-10">Campground Updated Successfully</h1>
+      <Link
+        to="/"
+        className="bg-blue-500 text-white px-5 py-2 text-md rounded-[8px] hover:bg-blue-600 transition-all duration-300"
+      >
+        Go to all campgrounds
+      </Link>
+    </div>
+  ) : (
     <form
       onSubmit={(e) => handleSubmit(e)}
       className="flex mx-auto my-10 flex-col"
@@ -109,10 +124,10 @@ const CampForm = () => {
         type="submit"
         className="bg-blue-500 text-white px-5 py-2 text-md rounded-[8px] hover:bg-blue-600 transition-all duration-300"
       >
-        Add Campground
+        Update Campground
       </button>
     </form>
   );
 };
 
-export default CampForm;
+export default UpdateCamp;

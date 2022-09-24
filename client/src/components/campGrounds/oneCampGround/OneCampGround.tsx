@@ -26,7 +26,7 @@ const OneCampGround = () => {
       <h1>{camp.description}</h1>
       <h1>{camp.price}</h1>
       <Link
-        to={`/form/update`}
+        to={`/edit/${camp._id}`}
         className="bg-blue-500 text-white px-5 py-2 text-md rounded-[8px] hover:bg-blue-600 transition-all duration-300"
       >
         EDIT
