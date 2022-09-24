@@ -2,18 +2,23 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import * as api from "./../../../api";
 import { OneCampGroundInterface } from "./oneCampGroundInterface";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const OneCampGround = () => {
   const [camp, setCamp] = useState<OneCampGroundInterface>();
   const [deleteCamp, setDeleteCamp] = useState<boolean>(false);
   const { id } = useParams();
+  const history = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await api.fetchSingleCamp(id!);
+      try {
+        const data = await api.fetchSingleCamp(id!);
 
-      setCamp(data.data.data.campGround);
+        setCamp(data.data.data.campGround);
+      } catch (err) {
+        history("/error");
+      }
     };
 
     fetchData();

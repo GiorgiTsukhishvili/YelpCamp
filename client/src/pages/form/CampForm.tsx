@@ -1,35 +1,36 @@
-import React, { useEffect, useState } from "react";
-import { UpdateCampInterface } from "./updateCampInterface";
-import * as api from "./../../api/index";
-import { useParams, Link } from "react-router-dom";
+import React, { useState } from "react";
+import { CampFormInterface } from "./campFormInterface";
+import * as api from "../../api/index";
+import { Link, useNavigate } from "react-router-dom";
 
-const UpdateCamp = () => {
-  const { id } = useParams();
-
-  const [campData, setCampData] = useState<UpdateCampInterface>({
+const CampForm = () => {
+  const [campData, setCampData] = useState<CampFormInterface>({
     title: "",
     price: 0,
     description: "",
     location: "",
     image: "",
-    _id: "",
-    __v: 0,
   });
-  const [updated, setUpdated] = useState<boolean>(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await api.fetchSingleCamp(id!);
-      setCampData(data.data.data.campGround);
-    };
-    fetchData();
-  }, [id]);
+  const history = useNavigate();
+  const [addedForm, setAddedForm] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await api.patchSingleCamp(id!, campData);
+    try {
+      await api.createCamp(campData);
 
-    setUpdated(true);
+      setCampData({
+        title: "",
+        price: 0,
+        description: "",
+        location: "",
+        image: "",
+      });
+      setAddedForm(true);
+    } catch (err) {
+      history("/error");
+    }
   };
 
   const updateCampData = (value: string, key: string) => {
@@ -38,9 +39,9 @@ const UpdateCamp = () => {
     });
   };
 
-  return updated ? (
+  return addedForm ? (
     <div className="flex mx-auto my-20 flex-col justify-center items-center">
-      <h1 className="text-2xl mb-10">Campground Updated Successfully</h1>
+      <h1 className="text-2xl mb-10">Campground Added Successfully</h1>
       <Link
         to="/"
         className="bg-blue-500 text-white px-5 py-2 text-md rounded-[8px] hover:bg-blue-600 transition-all duration-300"
@@ -124,10 +125,10 @@ const UpdateCamp = () => {
         type="submit"
         className="bg-blue-500 text-white px-5 py-2 text-md rounded-[8px] hover:bg-blue-600 transition-all duration-300"
       >
-        Update Campground
+        Add Campground
       </button>
     </form>
   );
 };
 
-export default UpdateCamp;
+export default CampForm;

@@ -2,16 +2,21 @@ import React, { useState, useEffect } from "react";
 import { CampGroundsInterface } from "./campGroundsInteface";
 import { v4 } from "uuid";
 import * as api from "./../../api/index";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const CampGrounds = () => {
   const [campGrounds, setCampGrounds] = useState<CampGroundsInterface[]>();
+  const history = useNavigate();
 
   useEffect(() => {
     const getData = async () => {
-      const data = await api.fetchCamps();
+      try {
+        const data = await api.fetchCamps();
 
-      setCampGrounds(data.data.data.campGrounds);
+        setCampGrounds(data.data.data.campGrounds);
+      } catch (err) {
+        history("/error");
+      }
     };
 
     getData();

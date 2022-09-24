@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import { Footer, Navbar, CampGrounds, OneCampGround } from "./components";
-import {CampForm, UpdateCamp} from "./form";
+import { CampForm, UpdateCamp, Error } from "./pages";
 
 const App = () => {
   return (
@@ -13,6 +13,8 @@ const App = () => {
         <Route path="/campgrounds/:id" element={<OneCampGround />} />
         <Route path="/form" element={<CampForm />} />
         <Route path="/edit/:id" element={<UpdateCamp />} />
+        <Route path="/error" element={<Error />} />
+        <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
     </div>
