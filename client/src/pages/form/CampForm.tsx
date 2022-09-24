@@ -112,15 +112,16 @@ const CampForm = () => {
       >
         Description
       </label>
-      <input
-        type="text"
+      <textarea
         id="description"
-        placeholder="Campground Description"
+        cols={30}
+        rows={3}
         required
+        placeholder="Campground Description"
+        className="border-[2px] mb-5 border-gray-500 focus:border-gray-500 px-2 focus:outline-none rounded-[8px] py-1.5 w-[400px]"
         value={campData.description}
         onChange={(e) => updateCampData("description", e.target.value)}
-        className="border-[2px] mb-5 border-gray-500 focus:border-gray-500 px-2 focus:outline-none rounded-[8px] py-1.5 w-[400px]"
-      />
+      ></textarea>
       <button
         type="submit"
         className="bg-blue-500 text-white px-5 py-2 text-md rounded-[8px] hover:bg-blue-600 transition-all duration-300"

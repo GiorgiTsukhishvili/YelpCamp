@@ -40,25 +40,31 @@ const OneCampGround = () => {
       </Link>
     </div>
   ) : camp !== undefined ? (
-    <div className="flex mx-auto my-10 flex-col justify-center items-start w-[450px] border-[1.5px] border-gray-400">
-      <img src={camp.image} alt="" className="w-[450px] h-[500px] bg-contain" />
-      <h1 className="pl-1 text-xl mt-3 font-bold text-black">{camp.title}</h1>
-      <h1 className="pl-1 mt-3">{camp.description}</h1>
-      <h1 className="pl-1 mt-3 text-gray-400">{camp.location}</h1>
-      <h1 className="pl-1 mt-3">${camp.price}/night</h1>
-      <div className=" ml-2 my-3">
-        <Link
-          to={`/edit/${camp._id}`}
-          className="mr-4 bg-blue-500 text-white px-5 py-1.5 text-md rounded-[8px] hover:bg-blue-600 transition-all duration-300"
-        >
-          EDIT
-        </Link>
-        <button
-          className="bg-red-500 text-white px-5 py-1.5 text-md rounded-[8px] hover:bg-red-600 transition-all duration-300"
-          onClick={() => removeCamp()}
-        >
-          Delete
-        </button>
+    <div className="flex my-10 justify-center items-start mx-20 border-[1.5px] border-gray-400">
+      <img
+        src={camp.image}
+        alt="Campground"
+        className="w-[500px] h-[500px] bg-contain"
+      />
+      <div>
+        <h1 className="pl-3 text-xl mt-3 font-bold text-black">{camp.title}</h1>
+        <h1 className="pl-3 mt-3">{camp.description}</h1>
+        <h1 className="pl-3 mt-3 text-gray-400">{camp.location}</h1>
+        <h1 className="pl-3 mt-3">${camp.price}/night</h1>
+        <div className=" ml-3 my-3">
+          <Link
+            to={`/edit/${camp._id}`}
+            className="mr-4 bg-blue-500 text-white px-5 py-1.5 text-md rounded-[8px] hover:bg-blue-600 transition-all duration-300"
+          >
+            EDIT
+          </Link>
+          <button
+            className="bg-red-500 text-white px-5 py-1.5 text-md rounded-[8px] hover:bg-red-600 transition-all duration-300"
+            onClick={() => removeCamp()}
+          >
+            DELETE
+          </button>
+        </div>
       </div>
     </div>
   ) : (

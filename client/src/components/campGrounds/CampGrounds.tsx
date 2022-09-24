@@ -27,7 +27,7 @@ const CampGrounds = () => {
       {campGrounds &&
         campGrounds.map((item) => (
           <div key={v4()} className="border-gray-400 border-[1.5px] flex">
-            <img src={item.image} alt="" className="w-[350px] h-[500px]" />
+            <img src={item.image} alt="" className="w-[350px] h-[350px]" />
             <div className="w-[700px] py-2 px-5">
               <h1 className="text-2xl font-bold pb-5">{item.title}</h1>
               <h1>{item.description}</h1>
