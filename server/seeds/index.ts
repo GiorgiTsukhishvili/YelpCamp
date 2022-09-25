@@ -7,6 +7,8 @@ mongoose.connect("mongodb://localhost:27017/yelp-camp");
 
 const sample = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
 
+const imageUrl = "https://source.unsplash.com/collection/483251";
+
 const seedDb = async () => {
   await CampGround.deleteMany({});
   for (let i = 0; i < 50; i++) {
@@ -16,7 +18,7 @@ const seedDb = async () => {
     await CampGround.create({
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
       title: `${sample(descriptors)} ${sample(places)}`,
-      image: "https://source.unsplash.com/collection/483251",
+      image: imageUrl,
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique fuga fugiat cumque autem mollitia neque voluptatibus quia labore eligendi tempore quis provident id quo, aperiam impedit pariatur. Odio, ratione id.",
       price,
