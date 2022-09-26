@@ -21,7 +21,7 @@ const CampGrounds = () => {
 
     getData();
   }, []);
-  console.log(campGrounds);
+
   return (
     <div className="mx-auto my-10 flex flex-col gap-10">
       {campGrounds &&

@@ -21,5 +21,15 @@ const campGroundSchema = new mongoose_1.default.Schema({
         type: String,
         required: [true, "Campground must have a location"],
     },
+    comments: [
+        {
+            name: {
+                type: String,
+            },
+            comment: {
+                type: String,
+            },
+        },
+    ],
 });
 exports.CampGround = mongoose_1.default.model("CampGround", campGroundSchema);

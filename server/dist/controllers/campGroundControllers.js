@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteCampGround = exports.updateCampGround = exports.createCampGround = exports.getOneCampGround = exports.getCampGrounds = void 0;
+exports.postComment = exports.deleteCampGround = exports.updateCampGround = exports.createCampGround = exports.getOneCampGround = exports.getCampGrounds = void 0;
 const campGround_1 = require("../models/campGround");
 const getCampGrounds = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -107,3 +107,21 @@ const deleteCampGround = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.deleteCampGround = deleteCampGround;
+const postComment = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const newCampGround = yield campGround_1.CampGround.findByIdAndUpdate(req.params.id, {
+            comments: req.body,
+        });
+        res.status(200).json({
+            status: "success",
+            data: newCampGround,
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            status: "fail",
+            message: err,
+        });
+    }
+});
+exports.postComment = postComment;

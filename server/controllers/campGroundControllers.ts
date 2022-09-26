@@ -98,3 +98,21 @@ export const deleteCampGround = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const postComment = async (req: Request, res: Response) => {
+  try {
+    const newCampGround = await CampGround.findByIdAndUpdate(req.params.id, {
+      comments: req.body,
+    });
+
+    res.status(200).json({
+      status: "success",
+      data: newCampGround,
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      message: err,
+    });
+  }
+};

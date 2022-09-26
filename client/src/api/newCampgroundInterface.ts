@@ -15,3 +15,8 @@ export interface UpdateData {
   __v: number;
   _id: string;
 }
+
+export interface Comments {
+  name: string;
+  comment: string;
+}
