@@ -12,4 +12,5 @@ router
     .get(campGroundControllers_1.getOneCampGround)
     .patch(campGroundControllers_1.updateCampGround)
     .delete(campGroundControllers_1.deleteCampGround);
+router.route("/comments/:id").patch(campGroundControllers_1.postComment);
 exports.default = router;

@@ -16,6 +16,16 @@ const campGroundSchema = new mongoose.Schema({
     type: String,
     required: [true, "Campground must have a location"],
   },
+  comments: [
+    {
+      name: {
+        type: String,
+      },
+      comment: {
+        type: String,
+      },
+    },
+  ],
 });
 
 export const CampGround = mongoose.model("CampGround", campGroundSchema);

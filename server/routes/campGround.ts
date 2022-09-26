@@ -5,6 +5,7 @@ import {
   getOneCampGround,
   updateCampGround,
   deleteCampGround,
+  postComment,
 } from "../controllers/campGroundControllers";
 
 const router = express.Router();
@@ -16,5 +17,7 @@ router
   .get(getOneCampGround)
   .patch(updateCampGround)
   .delete(deleteCampGround);
+
+router.route("/comments/:id").patch(postComment);
 
 export default router;

@@ -30,6 +30,7 @@ const seedDb = () => __awaiter(void 0, void 0, void 0, function* () {
             image: imageUrl,
             description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique fuga fugiat cumque autem mollitia neque voluptatibus quia labore eligendi tempore quis provident id quo, aperiam impedit pariatur. Odio, ratione id.",
             price,
+            comments: [],
         });
     }
 });
